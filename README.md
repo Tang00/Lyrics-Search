@@ -10,20 +10,36 @@ https://www.kaggle.com/datasets/notshrirang/spotify-million-song-dataset?resourc
 ## Libraries
 This project uses the following libraries:  
  - Pyserini (pyserini)
- - Sentence Transformers (sentence-transformers)(required)
+ - Sentence Transformers (sentence-transformers)
  - UMAP (umap-learn)
  - Plotly (plotly)
- - Pandas (pandas) (required)
- - NumPy (numpy) (required)  
-To run the CLIs only those marked with required are necessary. The other libraries were used to build the model index/embeddings. The package name is written in brackets. To install in command line run:  
+ - Pandas (pandas)
+ - NumPy (numpy)
+ The package name is written in brackets. To install in command line run:  
 ```
 pip install {package_name}
 ```  
   
-## Running the CLIs
+## Running the Project
+Unfortunately, the cleaned csv and jsonl files are too large to upload directly to Github. To generate these files:  
 ```
-python3 searcher.py
-python3 sbert_searcher.py
+python clean.py
+python csv_to_jsonl.py
+```  
+These should generate the lyrics_cleaned.csv and collection/pyserini_collection.jsonl necessary to run the CLIs.  
+Next, you will need to run this command to create the BM25 index in as the lyric_index directory.  
+```
+ python -m pyserini.index.lucene \
+  --collection JsonCollection \
+  --input collection \
+  --index lyric_index \
+  --generator DefaultLuceneDocumentGenerator \
+  --threads 4
+```  
+Finally, you can run the CLIs with:  
+```
+python searcher.py
+python sbert_searcher.py
 ```  
   
 ## Files
@@ -39,14 +55,3 @@ python3 sbert_searcher.py
  - lyrics_embeddings_plot.html - Plotly scatterplot
  - collection - used for building BM25 index
  - lyric_index - index for BM25 model
-  
-## Command Line
-The following command was run in order to create the BM25 index:  
- ```
- python -m pyserini.index.lucene \
-  --collection JsonCollection \
-  --input collection \
-  --index lyric_index \
-  --generator DefaultLuceneDocumentGenerator \
-  --threads 4
-  ```
