@@ -1,9 +1,15 @@
 # Lyrics-Search
 This project is an exploration in information retrieval techniques through the creation of multiple search models for song lyrics.  
-The project features 2 models: A BM25 model and an SBERT model. Both are built with Pyserini. 
-The models can be interacted with through their respective CLI's in searcher.py (BM25) and sbert_searcher.py (SBERT).  
-The project also features an interactive scatterplot showing the cosine similarity of each song in the dataset.  
-
+  
+The project features 2 models: A BM25 model and an SBERT model. Both are built with Pyserini.  
+The models can be interacted with through their respective CLIs.  
+  
+## Scatterplot
+The project also features an interactive scatterplot showing the cosine similarity of each song in the dataset. You can filter by artist to see the similarity of their discography, as well.  
+  
+This project is hosted on Github Pages and the scatterplot can be accessed here:  
+[https://tang00.github.io/Lyrics-Search/](https://tang00.github.io/Lyrics-Search/)  
+  
 ## Dataset
 https://www.kaggle.com/datasets/notshrirang/spotify-million-song-dataset?resource=download
   
@@ -14,7 +20,7 @@ This project uses the following libraries:
  - UMAP (umap-learn)
  - Plotly (plotly)
  - Pandas (pandas)
- - NumPy (numpy)
+ - NumPy (numpy)  
  The package name is written in brackets. To install in command line run:  
 ```
 pip install {package_name}
@@ -35,6 +41,10 @@ Next, you will need to run this command to create the BM25 index in as the lyric
   --index lyric_index \
   --generator DefaultLuceneDocumentGenerator \
   --threads 4
+```
+The embeddings file sbert_embeddings.npy was uploaded to the project, but if there are any issues, regenerate with:  
+```
+python embeddings.py
 ```  
 Finally, you can run the CLIs with:  
 ```
@@ -50,8 +60,9 @@ python sbert_searcher.py
  - sbert_searcher.py - CLI for SBERT
  - scatterplot.py - Build interactive Plotly HTML scatterplot of song similarity
  - spotify_millsongdata.csv - original dataset
- - lyrics_cleaned.csv - cleaned lyrics csv
+ - lyrics_cleaned.csv - cleaned lyrics csv (not included, file too large)
  - sbert_embeddings.npy - SBERT embeddings
  - lyrics_embeddings_plot.html - Plotly scatterplot
- - collection - used for building BM25 index
- - lyric_index - index for BM25 model
+ - index.html - main html file for hosting on Github Pages, just redirects to the scatterplot
+ - collection - used for building BM25 index (not included, file too large)
+ - lyric_index - index for BM25 model (not included)
