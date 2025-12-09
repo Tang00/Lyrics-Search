@@ -12,7 +12,7 @@ def log_removed(reason, df_subset):
     for _, row in df_subset.iterrows():
         removed_rows.append((reason, row.to_dict()))
 
-df = pd.read_csv("spotify_millsongdata.csv")
+df = pd.read_csv("data/spotify_millsongdata.csv")
 
 duplicates = df[df.duplicated(subset=["song", "artist"], keep="first")]
 log_removed("Duplicate song+artist", duplicates)
@@ -36,7 +36,7 @@ def clean_lyrics(text):
 
 df["clean_lyrics"] = df["text"].progress_apply(clean_lyrics)
 
-df.to_csv("lyrics_cleaned.csv", index=False)
+df.to_csv("data/lyrics_cleaned.csv", index=False)
 
 print("Total Songs:", len(df))
 

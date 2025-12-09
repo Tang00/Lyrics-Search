@@ -1,7 +1,7 @@
 import pandas as pd
 import json
 
-df = pd.read_csv("lyrics_cleaned.csv")
+df = pd.read_csv("data/lyrics_cleaned.csv")
 
 with open("collection/pyserini_collection.jsonl", "w") as f:
     for i, row in df.iterrows():

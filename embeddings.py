@@ -3,7 +3,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 
 print("Loading dataset...")
-df = pd.read_csv("lyrics_cleaned.csv")
+df = pd.read_csv("data/lyrics_cleaned.csv")
 
 lyrics = df["clean_lyrics"].astype(str).tolist()
 

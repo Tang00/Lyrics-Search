@@ -4,7 +4,7 @@ import umap
 import plotly.express as px
 
 def plot_embeddings(
-    csv_path="lyrics_with_embeddings.csv",
+    csv_path="data/lyrics_cleaned.csv",
     embeddings_path="sbert_embeddings.npy",
     output_html="lyrics_embeddings_plot.html"
 ):
