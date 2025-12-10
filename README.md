@@ -29,13 +29,13 @@ pip install {package_name}
 ## Running the Project
 Unfortunately, the cleaned csv and jsonl files are too large to upload directly to Github. To generate these files:  
 ```
-python clean.py
-python csv_to_jsonl.py
+python3 clean.py
+python3 csv_to_jsonl.py
 ```  
 These should generate the lyrics_cleaned.csv and collection/pyserini_collection.jsonl necessary to run the CLIs.  
-Next, you will need to run this command to create the BM25 index in as the lyric_index directory.  
+Next, you will need to run this command to create the BM25 index lyric_index directory.  
 ```
- python -m pyserini.index.lucene \
+ python3 -m pyserini.index.lucene \
   --collection JsonCollection \
   --input collection \
   --index lyric_index \
@@ -44,12 +44,12 @@ Next, you will need to run this command to create the BM25 index in as the lyric
 ```
 The embeddings file sbert_embeddings.npy was uploaded to the project, but if there are any issues, regenerate with:  
 ```
-python embeddings.py
+python3 embeddings.py
 ```  
 Finally, you can run the CLIs with:  
 ```
-python searcher.py
-python sbert_searcher.py
+python3 searcher.py
+python3 sbert_searcher.py
 ```  
   
 ## Files
@@ -59,10 +59,28 @@ python sbert_searcher.py
  - embeddings.py - Generating MiniLM embeddings for SBERT model
  - sbert_searcher.py - CLI for SBERT
  - scatterplot.py - Build interactive Plotly HTML scatterplot of song similarity
- - spotify_millsongdata.csv - original dataset
- - lyrics_cleaned.csv - cleaned lyrics csv (not included, file too large)
+ - data
+   - spotify_millsongdata.csv - original dataset
+   - lyrics_cleaned.csv - cleaned lyrics csv (not included, file too large)
  - sbert_embeddings.npy - SBERT embeddings
  - lyrics_embeddings_plot.html - Plotly scatterplot
  - index.html - main html file for hosting on Github Pages, just redirects to the scatterplot
+ - generate_bm25_evaluation.py - Generate BM25 CSV for manual annotation
+ - generate_sbert_evaluation.py - Generate SBERT CSV for manual annotation
+ - manual_evaluations
+   - bm25_evaluation_sheet.csv - BM25 manual annotation sheet
+   - sbert_evaluation_sheet.csv - SBERT manual annotation sheet
  - collection - used for building BM25 index (not included, file too large)
  - lyric_index - index for BM25 model (not included)
+
+## Evaluation
+The evaluation of both models was done with mean NDCG@10 and mean Precision@10. CSV files for manual annotation were generated with the generate_bm25_evaluation.py and generate_sbert_evaluation.py files.  
+The results were as follows:  
+### BM25
+ - Mean Precision@10: 0.6950
+ - Mean NDCG@10:      0.8164  
+### SBERT
+ - Mean Precision@10: 0.8750
+ - Mean NDCG@10:      0.9456
+  
+Overall, results were good for both models, BM25 was better at retrieving songs that had the query keywords multiple times, which were often very relevant songs, but struggled on more subtle queries like "letting go" where the love implications were not captured well. The SBERT model was able to understand deeper meanings for those queries and was more effective in general.
