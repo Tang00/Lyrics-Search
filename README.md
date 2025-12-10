@@ -5,7 +5,7 @@ The project features 2 models: A BM25 model and an SBERT model. Both are built w
 The models can be interacted with through their respective CLIs.  
   
 ## Scatterplot
-The project also features an interactive scatterplot showing the cosine similarity of each song in the dataset. You can filter by artist to see the similarity of their discography, as well.  
+The project also features an interactive scatterplot showing the cosine similarity of each song in the dataset using the SBERT embeddings. You can filter by artist to see the similarity of their discography, as well.  
   
 This project is hosted on Github Pages and the scatterplot can be accessed here:  
 [https://tang00.github.io/Lyrics-Search/](https://tang00.github.io/Lyrics-Search/)  
