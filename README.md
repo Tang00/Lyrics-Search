@@ -9,6 +9,8 @@ The project also features an interactive scatterplot showing the cosine similari
   
 This project is hosted on Github Pages and the scatterplot can be accessed here:  
 [https://tang00.github.io/Lyrics-Search/](https://tang00.github.io/Lyrics-Search/)  
+
+The scatterplot shows that due to the complexity of the SBERT model, all the songs seem to be located in one large cluster. This is likely due to all songs having similar patterns like rhyme schemes, rythm, etc. However, there were some notable small clusters that appeared: Christmas songs and foreign language songs. Within the large cluster there are also some observable groupings. For example, love songs on the left side and hip hop on the right.
   
 ## Dataset
 https://www.kaggle.com/datasets/notshrirang/spotify-million-song-dataset?resource=download
