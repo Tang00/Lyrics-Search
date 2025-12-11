@@ -1,7 +1,7 @@
 # Lyrics-Search
 This project is an exploration in information retrieval techniques through the creation of multiple search models for song lyrics.  
   
-The project features 2 models: A BM25 model and an SBERT model. Both are built with Pyserini.  
+The project features 2 models: A BM25 model built with Pyserini and an SBERT model built with Sentence-Transformers.  
 The models can be interacted with through their respective CLIs.  
   
 ## Scatterplot
